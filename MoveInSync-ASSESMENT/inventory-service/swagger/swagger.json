@@ -1,0 +1,72 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Inventory Service API",
+    "version": "1.0.0"
+  },
+  "basePath": "/api",
+  "paths": {
+    "/inventorys": {
+      "get": {
+        "summary": "Get all inventorys",
+        "responses": {
+          "200": {
+            "description": "List of inventorys"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create new inventory",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "inventory",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Inventory"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Inventory created"
+          }
+        }
+      }
+    },
+    "/inventorys/{id}": {
+      "get": {
+        "summary": "Get Inventory by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Inventory found"
+          },
+          "404": {
+            "description": "Inventory not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Inventory": {
+      "type": "object",
+      "properties": {
+        "bookId": {
+          "type": "integer"
+        },
+        "stock": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
